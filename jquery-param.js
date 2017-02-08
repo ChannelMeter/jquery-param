@@ -4,7 +4,7 @@
 (function (global) {
     'use strict';
 
-    var param = function (a) {
+    var param = function (a, traditional) {
         var s = [], rbracket = /\[\]$/,
             isArray = function (obj) {
                 return Object.prototype.toString.call(obj) === '[object Array]';
@@ -20,7 +20,11 @@
                             if (rbracket.test(prefix)) {
                                 add(prefix, obj[i]);
                             } else {
-                                buildParams(prefix + '[' + (typeof obj[i] === 'object' ? i : '') + ']', obj[i]);
+                                if (traditional) {
+                                    buildParams(prefix + '[' + (typeof obj[i] === 'object' ? i : '') + ']', obj[i]);                                    
+                                } else {
+                                    buildParams(prefix + (typeof obj[i] === 'object' ? '[' + i + ']' : ''), obj[i]);                                    
+                                }
                             }
                         }
                     } else if (obj && String(obj) === '[object Object]') {
