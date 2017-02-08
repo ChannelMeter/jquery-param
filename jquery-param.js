@@ -21,9 +21,9 @@
                                 add(prefix, obj[i]);
                             } else {
                                 if (traditional) {
-                                    buildParams(prefix + '[' + (typeof obj[i] === 'object' ? i : '') + ']', obj[i]);                                    
-                                } else {
                                     buildParams(prefix + (typeof obj[i] === 'object' ? '[' + i + ']' : ''), obj[i]);                                    
+                                } else {
+                                    buildParams(prefix + '[' + (typeof obj[i] === 'object' ? i : '') + ']', obj[i]);                                    
                                 }
                             }
                         }
